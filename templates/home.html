@@ -1,11 +1,32 @@
 {% extends 'layout.html' %}
+
 {% block body %}
     <div class="grid-25">
-        nav here maybe?
+        <nav>
+            <ul class="circle--inline">
+                {% if not user.is_authenticated %}
+                    <li><a href="{% url 'accounts:sign_up' %}">Sign Up</a></li>
+                    <li><a href="{% url 'accounts:sign_in' %}">Sign In</a></li>
+                {% else %}
+                    <h2>You are signed in as {{ user.username }}</h2>
+                    <li><a href="{% url 'accounts:profile' user.username %}">View Profile</a></li>
+                    <li><a href="{% url 'accounts:edit_profile' user.username %}">Edit Profile</a></li>
+                    <li><a href="{% url 'accounts:change_password' user.username %}">Change Password</a></li>
+                    <li><a href="{% url 'accounts:sign_out' %}">Sign Out</a></li>
+                {% endif %}
+            </ul>
+        </nav>
     </div>
     <div class="grid-75">
-        <h1>Welcome!</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad amet assumenda beatae blanditiis, deserunt doloremque ea earum excepturi id, impedit ipsam magnam nulla obcaecati, quidem quis soluta tenetur vitae?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad amet assumenda beatae blanditiis, deserunt doloremque ea earum excepturi id, impedit ipsam magnam nulla obcaecati, quidem quis soluta tenetur vitae?</p>
+        <p>For this project, you’ll build a form that takes in details about a registered user and displays those details on a profile page. The profile page should only be visible once the user has logged in.The profile page should include first name, last name, email, date of birth, short bio and the option to upload an avatar. You’ll also set up validation for email, date of birth and the biography. The Date of Birth validation should accept three date formats: YYYY-MM-DD, MM/DD/YYYY, or MM/DD/YY. The Email validation should check if the email addresses match and are in a valid format. The bio validation should check that the bio is 10 characters or longer and properly escapes HTML formatting.</p>
+        <p>You’ll also create a "change password page" that updates the user’s password. This page will ask for current password, new password and confirm password. Set up validation which checks that the current password is valid, that the new password and confirm password fields match, and that the new password follows the following policy:</p>
+            <ul>
+                <li>must not be the same as the current password</li>
+                <li>minimum password length of 14 characters.</li>
+                <li>must use of both uppercase and lowercase letters</li>
+                <li>must include of one or more numerical digits</li>
+                <li>must include of special characters, such as @, #, $</li>
+                <li>cannot contain the username or parts of the user’s full name, such as his first name</li>
+            </ul>
     </div>
 {% endblock %}
