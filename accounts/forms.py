@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth.forms import PasswordChangeForm
 
 
 from . import models
@@ -23,4 +22,3 @@ class ProfileForm(forms.ModelForm):
             'bio',
             'avatar',
         )
-

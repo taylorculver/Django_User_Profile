@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^sign_out/$', views.sign_out, name='sign_out'),
     url(r'^(?P<username>\w+)/$', views.profile, name='profile'),
     url(r'^(?P<username>\w+)/edit/$', views.edit_profile, name='edit_profile'),
-    url(r'^(?P<username>\w+)/change_password/$', views.change_password, name='change_password'),
+    url(r'^(?P<username>\w+)/change_password/$',
+        views.change_password, name='change_password'),
 ]
